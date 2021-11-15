@@ -33,7 +33,7 @@ playMedia()
      * @return string contents of the CD class*/
     public String toString()
     {
-        return "";
+        return "All The Awesome Song Titles So You Know This Is Working.";
     }
 
     public void playMedia(){

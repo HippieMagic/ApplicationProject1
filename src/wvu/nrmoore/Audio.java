@@ -36,7 +36,7 @@ public class Audio {
      * @return string contents of the Audio class*/
     public String toString()
     {
-        return "";
+        return "Super Cool Artist String So You Know It's Working.";
     }
 
 }
