@@ -85,7 +85,7 @@ public class Artist {
      * @return string contents of the Artist class*/
     public String toString()
     {
-        return "";
+        return getFirst() + " " + getLast();
     }
 
 }

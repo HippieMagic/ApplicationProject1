@@ -9,7 +9,7 @@ public class Main {
         artist.setLast("Moore");
         artist.setFirst("Nick");
 
-        System.out.println(artist.getFirst() + " " + artist.getLast());
+        System.out.println(artist);
 
     }
 }
