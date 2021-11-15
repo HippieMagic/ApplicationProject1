@@ -1,6 +1,6 @@
 package wvu.nrmoore;
 
-public class Audio {
+public class Audio extends Media {
 
     private Artist[] groupMembers;
     private int numberOfMembers;
@@ -39,4 +39,7 @@ public class Audio {
         return "Super Cool Artist String So You Know It's Working.";
     }
 
+    public Audio(){
+        super();
+    }
 }

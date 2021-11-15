@@ -4,21 +4,6 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Artist {
-    /*
-    *
-    * Artist
-
-        last: String
-        first: String
-        birthDate: Date
-        twitterHandle: String
-        url: String
-
-        toString()
-        equals(Object x)
-    *
-    *
-    * */
 
     private String last;
     private String first;
@@ -86,6 +71,10 @@ public class Artist {
     public String toString()
     {
         return getFirst() + " " + getLast();
+    }
+
+    public Artist(){
+        super();
     }
 
 }

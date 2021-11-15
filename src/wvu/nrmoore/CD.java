@@ -1,6 +1,6 @@
 package wvu.nrmoore;
 
-public class CD {
+public class CD extends Audio {
     /*
     * songTitles[]:string
 numberOfTitles:int
@@ -38,5 +38,9 @@ playMedia()
 
     public void playMedia(){
         // not sure what this does yet.
+    }
+
+    public CD(){
+        super();
     }
 }
