@@ -51,6 +51,15 @@ public class Artist {
         return url;
     }
 
+    public boolean isArtistInArray(Artist[] artistsArray){
+        for (int i = 0; i < artistsArray.length; i++){
+            if(equals(artistsArray[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
