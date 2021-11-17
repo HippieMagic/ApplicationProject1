@@ -1,12 +1,15 @@
 package wvu.nrmoore;
 
+import java.util.Date;
+
 public class Main {
     public static void main(String[] args) {
 	// write your code here
-        Artist artist = new Artist();
+        Date newDate = new Date();
+        Artist artist = new Artist("Nicholas", "Moore", newDate, "Twitter", "www.test.com");
 
-        artist.setLast("Moore");
-        artist.setFirst("Nick");
+        //artist.setLast("Moore");
+        //artist.setFirst("Nick");
 
         Artist artist2 = new Artist();
 

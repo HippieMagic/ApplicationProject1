@@ -51,6 +51,15 @@ public class Artist {
         return url;
     }
 
+    public Artist(String firstName, String lastName, Date birthDate, String twitterHandle, String url){
+        super();
+        this.first = firstName;
+        this.last = lastName;
+        this.birthDate = birthDate;
+        this.twitterHandle = twitterHandle;
+        this.url = url;
+    }
+
     public boolean isArtistInArray(Artist[] artistsArray){
         for (int i = 0; i < artistsArray.length; i++){
             if(equals(artistsArray[i])){
