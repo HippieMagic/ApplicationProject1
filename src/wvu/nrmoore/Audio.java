@@ -30,16 +30,35 @@ public class Audio extends Media {
         return producer;
     }
 
+    public Audio(Artist[] groupMembers, int numberOfMembers, Artist producer){
+        super();
+        this.groupMembers = groupMembers;
+        this.numberOfMembers = numberOfMembers;
+        this.producer = producer;
+    }
+
+    public Audio(){
+        super();
+    }
+
     /**Function to convert Audio values to a string value<br>
      * pre-conditions: none<br>
      * post-conditions: Audio remains unchanged
      * @return string contents of the Audio class*/
     public String toString()
     {
-        return "Super Cool Artist String So You Know It's Working.";
-    }
+        String returnString = "Group Members: ";
+        for (int i = 0; i < groupMembers.length; i++){
+            if(groupMembers[i] != null){
+                returnString = returnString + groupMembers[i].toString();
+            }
+        }
 
-    public Audio(){
-        super();
+        returnString = returnString + numberOfMembers + "\n";
+
+        returnString = returnString + "Producer: ";
+        returnString = returnString + producer.toString();
+
+        return returnString;
     }
 }

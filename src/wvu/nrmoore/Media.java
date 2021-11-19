@@ -46,6 +46,10 @@ public class Media {
         this.numPlays = numPlays;
     }
 
+    public String playMedia(String mediaName){
+        return mediaName;
+    }
+
     public Media() {
         super();
     }

@@ -25,6 +25,14 @@ public class Main {
             System.out.println("Artist is not in array.");
         }
 
+        artArray[1] = artist2;
+
+
+
+        Audio aud = new Audio(artArray, 2, artist);
+
+        System.out.println(aud.toString());
+
 
         System.out.println(artist);
         System.out.println(artist2);

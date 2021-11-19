@@ -1,15 +1,16 @@
 package wvu.nrmoore;
 
 public class CD extends Audio {
-    /*
-    * songTitles[]:string
-numberOfTitles:int
-toString()
-playMedia()
-    * */
+
 
     private String[] songTitles;
     private int numberOfTitles;
+
+    public CD(String[] songTitles, int numberOfTitles){
+        super();
+        this.songTitles = songTitles;
+        this.numberOfTitles = numberOfTitles;
+    }
 
     public void setSongTitles(String[] songTitles) {
         this.songTitles = songTitles;
@@ -33,11 +34,19 @@ playMedia()
      * @return string contents of the CD class*/
     public String toString()
     {
-        return "All The Awesome Song Titles So You Know This Is Working.";
+        String cdString = "Tracks: \n";
+        for (int i = 0; i < songTitles.length; i++){
+            if (songTitles[i] != null){
+                cdString = cdString + songTitles[i] + "\n";
+            }
+        }
+        cdString = cdString + "Number of Tracks: " + getNumberOfTitles();
+        return cdString;
     }
 
-    public void playMedia(){
-        // not sure what this does yet.
+    @Override
+    public String playMedia(String mediaName) {
+        return super.playMedia(mediaName);
     }
 
     public CD(){

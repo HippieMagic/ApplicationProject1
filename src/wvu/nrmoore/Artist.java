@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class Artist {
 
-    private String last;
-    private String first;
+    private String last = "";
+    private String first = "";
     private Date birthDate;
-    private String twitterHandle;
-    private String url;
+    private String twitterHandle = "";
+    private String url = "";
 
     public void setLast(String last) {
         this.last = last;
@@ -88,7 +88,11 @@ public class Artist {
      * @return string contents of the Artist class*/
     public String toString()
     {
-        return getFirst() + " " + getLast();
+        String dateString = "";
+        if (getBirthDate() != null){
+            dateString = getBirthDate().toString();
+        }
+        return "Full Name: " + getFirst() + " " + getLast() + "\nBirthdate: " + dateString + "\nTwitter Handle: " + getTwitterHandle() + " \nURL: " + getUrl() + "\n";
     }
 
     public Artist(){
