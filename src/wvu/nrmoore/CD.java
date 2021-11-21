@@ -44,9 +44,8 @@ public class CD extends Audio {
         return cdString;
     }
 
-    @Override
-    public String playMedia(String mediaName) {
-        return super.playMedia(mediaName);
+    public void playMedia() {
+        super.playMedia();
     }
 
     public CD(){

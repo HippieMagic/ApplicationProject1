@@ -8,7 +8,7 @@ public class Video extends Media {
     private String rating;
 
     public Video(String title, Artist majorArtist, int playTime, int numPlays, Artist[] sA, int nA, Artist d,
-            String r) {
+                 String r) {
         super(title, majorArtist, playTime, numPlays);
         supportingActors = sA;
         numActors = nA;
@@ -67,8 +67,13 @@ public class Video extends Media {
         return artistsString;
     }
 
-    public String playMedia() {
-        // super.playMedia(); -> need to implement play media in Media
-        return "/nRating: " + rating;
+    public void playMedia() {
+        super.playMedia();
+
+    }
+
+    public Video(){
+        super();
     }
 }
+

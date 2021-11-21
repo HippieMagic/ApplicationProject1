@@ -74,7 +74,7 @@ public class Artist {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Artist artist = (Artist) o;
-        return Objects.equals(last, artist.last) && Objects.equals(first, artist.first) && Objects.equals(birthDate, artist.birthDate) && Objects.equals(twitterHandle, artist.twitterHandle) && Objects.equals(url, artist.url);
+        return Objects.equals(last, artist.last) && Objects.equals(first, artist.first) && Objects.equals(birthDate, artist.birthDate);
     }
 
     @Override
