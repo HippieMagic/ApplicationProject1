@@ -1,35 +1,52 @@
 package wvu.nrmoore;
+/**
+ * Audio.java
+ *
+ * Audio class extends Media
+ * class includes setters, getters, and a toString() method
+ *
+ * Nicholas Moore
+ * SENG 505
+ * 11/21/2021
+ */
 
 public class Audio extends Media {
 
+    // declare private variables
     private Artist[] groupMembers;
     private int numberOfMembers;
     private Artist producer;
 
-    public void setGroupMembers(Artist[] groupMembers) {
-        this.groupMembers = groupMembers;
-    }
 
+    // getters
     public Artist[] getGroupMembers() {
         return groupMembers;
-    }
-
-    public void setNumberOfMembers(int numberOfMembers) {
-        this.numberOfMembers = numberOfMembers;
     }
 
     public int getNumberOfMembers() {
         return numberOfMembers;
     }
 
-    public void setProducer(Artist producer) {
-        this.producer = producer;
-    }
-
     public Artist getProducer() {
         return producer;
     }
 
+
+    // setters
+    public void setGroupMembers(Artist[] groupMembers) {
+        this.groupMembers = groupMembers;
+    }
+
+    public void setNumberOfMembers(int numberOfMembers) {
+        this.numberOfMembers = numberOfMembers;
+    }
+
+    public void setProducer(Artist producer) {
+        this.producer = producer;
+    }
+
+
+    // constructors
     public Audio(Artist[] groupMembers, int numberOfMembers, Artist producer){
         super();
         this.groupMembers = groupMembers;

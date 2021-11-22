@@ -1,11 +1,7 @@
 package wvu.nrmoore;
 
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.Locale;
+
 import java.util.Scanner;
 
 public class MediaApp {
@@ -17,7 +13,7 @@ public class MediaApp {
         ALL, CD, DVD
     }
 
-    static Scanner sc = new Scanner(System.in);
+    static Scanner scr = new Scanner(System.in);
     private static Artist[] theArtists = new Artist[100];
     private static int numArtists = 0;
 
@@ -31,39 +27,39 @@ public class MediaApp {
         {
             switch (mediaSelection) {
                 case 1:
-                    // Create CD
+// Create CD
                     System.out.println("Enter your CD information:");
                     CD cd = cdEntry();
                     theMedia[numMedia] = cd;
                     numMedia++;
-                    // return CD object
+// return CD object
                     break;
                 case 2:
-                    // Create DVD
+// Create DVD
                     System.out.println("Enter your DVD information:");
                     Video dvd = dvdEntry();
                     theMedia[numMedia] = dvd;
                     numMedia++;
-                    // return DVD object
+// return DVD object
                     break;
                 case 3:
-                    // List all media
+// List all media
                     System.out.println("Media List");
                     for (int i = 0; i < numMedia; i++)
                         System.out.println(theMedia[i].toString());
-                    // return CD object
+// return CD object
                     break;
                 case 4:
-                    // List major Artist
+// List major Artist
                     System.out.println("Artist List");
                     for (int i = 0; i < numArtists; i++)
                         System.out.println(theMedia[i].getMajorArtist());
 
-                    // return DVD object
+// return DVD object
                     break;
                 case 5:
-                    // Play CD
-                    int searchResultCD = searchCD(titleEntry(MediaApp.displayType.CD));
+// Play CD
+                    int searchResultCD = searchCD(titleEntry(displayType.CD));
                     if (searchResultCD == -1) {
                         System.out.println("Enter your CD is not in the database:");
                     } else {
@@ -72,8 +68,8 @@ public class MediaApp {
 
                     break;
                 case 6:
-                    // Play DVD
-                    int searchResultDVD = searchDVD(titleEntry(MediaApp.displayType.DVD));
+// Play DVD
+                    int searchResultDVD = searchDVD(titleEntry(displayType.DVD));
                     if (searchResultDVD == -1) {
                         System.out.println("Enter your DVD is not in the database:");
                     } else {
@@ -81,7 +77,7 @@ public class MediaApp {
                     }
                     break;
                 case 7:
-                    // Display number of plays
+// Display number of plays
 
                     System.out.println(numberMediaPlays());
                     break;
@@ -131,20 +127,21 @@ public class MediaApp {
         Artist[] theGroupMembers = addArtistMembers(" group member ");
         cd.setGroupMembers(theGroupMembers);
 
-        String[] theSongs = addSongs();
+        String[] theSongs = addSongs(cd);
         cd.setSongTitles(theSongs);
+
         return cd;
     }
 
-    private static String[] addSongs() {
-        int songIndex;
+    private static String[] addSongs(CD songTitles) {
+
         String[] theCdSongs = new String[10];
         int numSongs = 0;
 
         boolean done = false;
         while (!done) {
             System.out.println();
-            System.out.println("(1) Enter song title");
+            System.out.println("(1) Enter a song title on the CD");
             System.out.println("(2) Exit");
 
             int menuEntry = 0;
@@ -152,8 +149,8 @@ public class MediaApp {
                 try {
 
                     System.out.println("Enter your menu selection:");
-                    menuEntry = sc.nextInt();
-                    sc.nextLine();
+                    menuEntry = scr.nextInt();
+                    scr.nextLine();
                     if (menuEntry < 1 || menuEntry > 2) {
                         errorStatement();
 
@@ -161,7 +158,7 @@ public class MediaApp {
                         switch (menuEntry) {
                             case 1:
 
-                                String theSong = titleEntry(MediaApp.displayType.CD);
+                                String theSong = titleEntry(displayType.CD);
 
                                 theCdSongs[numSongs] = theSong;
                                 numSongs++;
@@ -176,11 +173,12 @@ public class MediaApp {
                     }
                 } catch (InputMismatchException e) {
                     errorStatement();
-                    sc.nextLine();
+                    scr.nextLine();
                 }
 
             }
         }
+        songTitles.setNumberOfTitles(numSongs);
         return theCdSongs;
     }
 
@@ -256,8 +254,8 @@ public class MediaApp {
                 try {
 
                     System.out.println("Enter your menu selection:");
-                    menuEntry = sc.nextInt();
-                    sc.nextLine();
+                    menuEntry = scr.nextInt();
+                    scr.nextLine();
                     if (menuEntry < 1 || menuEntry > 2) {
                         errorStatement();
 
@@ -292,7 +290,7 @@ public class MediaApp {
                     }
                 } catch (InputMismatchException e) {
                     errorStatement();
-                    sc.nextLine();
+                    scr.nextLine();
                 }
 
             }
@@ -302,16 +300,16 @@ public class MediaApp {
 
     private static String titleEntry(MediaApp.displayType displayType) {
         System.out.println("Enter your Title:");
-        String title = sc.nextLine();
+        String title = scr.nextLine();
         return title;
     }
 
     private static String enterSoundOptions() {
         System.out.println("Enter your sound option:");
-        // String twitrName = sc.nextLine();
-        // artist.setTwitterHandle(twitrName);
+// String twitrName = sc.nextLine();
+// artist.setTwitterHandle(twitrName);
 
-        String soundOptions = sc.nextLine();
+        String soundOptions = scr.nextLine();
 
         return soundOptions;
     }
@@ -325,8 +323,8 @@ public class MediaApp {
         while (dvdFormat < 1 || dvdFormat > 2) {
             try {
                 System.out.println("Enter your menu selection:");
-                dvdFormat = sc.nextInt();
-                sc.nextLine();
+                dvdFormat = scr.nextInt();
+                scr.nextLine();
                 if (dvdFormat < 1 || dvdFormat > 2) {
                     errorStatement();
 
@@ -347,40 +345,76 @@ public class MediaApp {
         artistBirthdate(artistType, artist);
 
         System.out.println("Enter the " + artistType + " twitter name:");
-        String twitrName = sc.nextLine();
+        String twitrName = scr.nextLine();
         artist.setTwitterHandle(twitrName);
         System.out.println("Enter the " + artistType + " URL - web address:");
-        String webLink = sc.nextLine();
+        String webLink = scr.nextLine();
         artist.setUrl(webLink);
         return artist;
     }
 
+
+//  private static void artistBirthdate(String artistType, Artist artist) {
+//  System.out.println("Enter the " + artistType +
+//  " birthdate in the form of: mm/dd/yyyy"); String birthDate = scr.nextLine();
+//  SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy"); try { Date
+//  date = formatter.parse(birthDate); artist.setBirthDate(date); } catch
+//  (ParseException e) { e.printStackTrace(); } }
+//
+//
+// private static void artistBirthdate1(String artistType, Artist artist) {
+// System.out.println("Enter the " + artistType + " birthdate in the form of: mm/dd/yyyy");
+// String birthDate = scr.nextLine();
+// SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
+// boolean dateValid = false;
+// while (!dateValid) {
+// try {
+// Date date = formatter.parse(birthDate);
+// dateValid = true;
+// artist.setBirthDate(date);
+// } catch (ParseException e) {
+// System.out.println("Your date was invalid, please re-enter");
+// birthDate = birthDate = scr.nextLine();birthDate = scr.nextLine();birthDate = scr.nextLine();birthDate = scr.nextLine();
+// }
+// }
+// }
+
+    /*
+     * private static void artistBirthdate(String artistType, Artist artist) {
+     * System.out.println("Enter the " + artistType +
+     * " birthdate in the form of: mm/dd/yyyy");
+     *
+     * Date date = new Date(); boolean dateValid = false; while (!dateValid) { try {
+     *
+     * date.getDate(); dateValid = true; artist.setBirthDate(date); scr.nextLine();
+     * } catch (Exception e) {
+     * System.out.println("Your date was invalid, please re-enter");
+     *
+     * } } }
+     */
+
     private static void artistBirthdate(String artistType, Artist artist) {
-        System.out.println("Enter the " + artistType + " birthdate in the form of: mm/dd/yyyy");
-        String birthDate = sc.nextLine();
-        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
-        try {
-            Date date = formatter.parse(birthDate);
-            artist.setBirthDate(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        artist.setArtistType(artistType);
+        // validate the birthdate then pass to setArtistBirthdate()
+        artist.setArtistBirthdate();
     }
+
+
 
     private static Artist artistKey(String artistType) {
         Artist artist = new Artist();
         System.out.println("Enter the " + artistType + " first name:");
-        String firstName = sc.nextLine();
+        String firstName = scr.nextLine();
         artist.setFirst(firstName);
 
         System.out.println("Enter the " + artistType + " last name:");
-        String lastName = sc.nextLine();
+        String lastName = scr.nextLine();
         artist.setLast(lastName);
 
         return artist;
     }
 
-    public static int menuSelection() {
+    public int menuSelection() {
         System.out.println();
         System.out.println("(1) Create CD");
         System.out.println("(2) Create DVD");
@@ -394,8 +428,8 @@ public class MediaApp {
         while (menuEntry < 1 || menuEntry > 7) {
             try {
                 System.out.println("Enter your menu selection:");
-                menuEntry = sc.nextInt();
-                sc.nextLine();
+                menuEntry = scr.nextInt();
+                scr.nextLine();
                 if (menuEntry < 1 || menuEntry > 7) {
                     errorStatement();
 
@@ -403,7 +437,7 @@ public class MediaApp {
 
             } catch (InputMismatchException e) {
                 errorStatement();
-                sc.nextLine();
+                scr.nextLine();
             }
 
         }
@@ -440,7 +474,8 @@ public class MediaApp {
         int i;
         boolean found = false;
         for (i = 0; !found && i < numArtists; i++)
-            if (artist.getFirst().equals(theArtists[i].getFirst()) && artist.getLast().equals(theArtists[i].getLast()))
+            if (artist.getFirst().equals(theArtists[i].getFirst()) && artist.getLast().equals(theArtists[i].getLast())
+                    && artist.getBirthDate().equals(theArtists[i].getBirthDate()))
                 found = true;
         if (!found)
             i = -1;
@@ -460,14 +495,14 @@ public class MediaApp {
         while (menuEntry < 1 || menuEntry > 2) {
             try {
                 System.out.println("Enter your menu selection:");
-                menuEntry = sc.nextInt();
-                sc.nextLine();
+                menuEntry = scr.nextInt();
+                scr.nextLine();
                 if (menuEntry < 1 || menuEntry > 2) {
                     errorStatement();
                 } else {
                     switch (menuEntry) {
                         case 1:
-                            title = titleEntry(MediaApp.displayType.CD);
+                            title = titleEntry(displayType.CD);
                             int searchResultCD = searchCD(title);
                             if (searchResultCD == -1) {
                                 System.out.println("Enter your CD is not in the database:");
@@ -478,7 +513,7 @@ public class MediaApp {
                             break;
 
                         case 2:
-                            title = titleEntry(MediaApp.displayType.DVD);
+                            title = titleEntry(displayType.DVD);
                             int searchResultDVD = searchDVD(title);
                             if (searchResultDVD == -1) {
                                 System.out.println("Enter your DVD is not in the database:");
@@ -491,7 +526,7 @@ public class MediaApp {
                 }
             } catch (InputMismatchException e) {
                 errorStatement();
-                sc.nextLine();
+                scr.nextLine();
             }
 
         }
